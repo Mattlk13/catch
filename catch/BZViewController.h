@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface BZViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
 
 @end

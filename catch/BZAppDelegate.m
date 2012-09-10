@@ -3,10 +3,11 @@
 //  catch
 //
 //  Created by Glenna Buford on 9/10/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 Blazing Cloud, Inc. All rights reserved.
 //
 
 #import "BZAppDelegate.h"
+#import "BZViewController.h"
 
 @implementation BZAppDelegate
 
@@ -15,6 +16,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+
     return YES;
 }
 							
