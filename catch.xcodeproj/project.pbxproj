@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21425FF715FEC5D600DCFF9D /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21425FF615FEC5D600DCFF9D /* GameKit.framework */; };
 		2169A9C015FE55E6002EAA3A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2169A9BF15FE55E6002EAA3A /* UIKit.framework */; };
 		2169A9C215FE55E6002EAA3A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2169A9C115FE55E6002EAA3A /* Foundation.framework */; };
 		2169A9C415FE55E6002EAA3A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2169A9C315FE55E6002EAA3A /* CoreGraphics.framework */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		1E655B824B664A749CA0C406 /* libPods-Unit Specs.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Unit Specs.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		21425FF615FEC5D600DCFF9D /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		2169A9BB15FE55E6002EAA3A /* catch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = catch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2169A9BF15FE55E6002EAA3A /* UIKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2169A9C115FE55E6002EAA3A /* Foundation.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -84,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21425FF715FEC5D600DCFF9D /* GameKit.framework in Frameworks */,
 				2169AA5315FEA152002EAA3A /* QuartzCore.framework in Frameworks */,
 				2169A9C015FE55E6002EAA3A /* UIKit.framework in Frameworks */,
 				2169A9C215FE55E6002EAA3A /* Foundation.framework in Frameworks */,
@@ -154,6 +157,7 @@
 		2169A9BE15FE55E6002EAA3A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				21425FF615FEC5D600DCFF9D /* GameKit.framework */,
 				2169AA5215FEA152002EAA3A /* QuartzCore.framework */,
 				2169A9BF15FE55E6002EAA3A /* UIKit.framework */,
 				2169A9C115FE55E6002EAA3A /* Foundation.framework */,
