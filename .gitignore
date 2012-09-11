@@ -1,0 +1,12 @@
+# Files
+.DS_Store
+path_to_obj.txt
+
+# Directories
+DerivedData/
+xcuserdata/
+build/
+
+#Bundler
+/bin
+.bundle/
