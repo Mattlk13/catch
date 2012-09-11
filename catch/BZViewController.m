@@ -54,6 +54,8 @@ NSNumber* DegreesToNumber(CGFloat degrees)
 - (IBAction)spinImage:(id)sender {
     if (self.rotating) {
         self.rotating = NO;
+        
+        [[self.imageView layer] removeAllAnimations];
         //Stop Transform
     } else {
         self.rotating = YES;
