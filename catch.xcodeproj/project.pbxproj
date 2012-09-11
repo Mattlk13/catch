@@ -36,6 +36,7 @@
 		2169AA3015FE8B0A002EAA3A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2169A9C115FE55E6002EAA3A /* Foundation.framework */; };
 		2169AA3615FE8B0A002EAA3A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2169AA3415FE8B0A002EAA3A /* InfoPlist.strings */; };
 		2169AA3915FE8B0A002EAA3A /* App_Specs.m in Sources */ = {isa = PBXBuildFile; fileRef = 2169AA3815FE8B0A002EAA3A /* App_Specs.m */; };
+		2169AA5315FEA152002EAA3A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2169AA5215FEA152002EAA3A /* QuartzCore.framework */; };
 		75A368D4D07B40899763C828 /* libPods-Unit Specs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E655B824B664A749CA0C406 /* libPods-Unit Specs.a */; };
 		D7BDF91EF461493FB48AB0AC /* libPods-Integration Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6EB21C7BBB04979BDFEAB71 /* libPods-Integration Tests.a */; };
 /* End PBXBuildFile section */
@@ -72,6 +73,7 @@
 		2169AA3715FE8B0A002EAA3A /* App_Specs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = App_Specs.h; sourceTree = "<group>"; };
 		2169AA3815FE8B0A002EAA3A /* App_Specs.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = App_Specs.m; sourceTree = "<group>"; };
 		2169AA3A15FE8B0A002EAA3A /* App Specs-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "App Specs-Prefix.pch"; sourceTree = "<group>"; };
+		2169AA5215FEA152002EAA3A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C9036F18E7F14F309E697275 /* Pods-Unit Specs.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unit Specs.xcconfig"; path = "Pods/Pods-Unit Specs.xcconfig"; sourceTree = SOURCE_ROOT; };
 		CECE328DAF47423599C070F9 /* Pods-Integration Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Integration Tests.xcconfig"; path = "Pods/Pods-Integration Tests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		D6EB21C7BBB04979BDFEAB71 /* libPods-Integration Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Integration Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2169AA5315FEA152002EAA3A /* QuartzCore.framework in Frameworks */,
 				2169A9C015FE55E6002EAA3A /* UIKit.framework in Frameworks */,
 				2169A9C215FE55E6002EAA3A /* Foundation.framework in Frameworks */,
 				2169A9C415FE55E6002EAA3A /* CoreGraphics.framework in Frameworks */,
@@ -151,6 +154,7 @@
 		2169A9BE15FE55E6002EAA3A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2169AA5215FEA152002EAA3A /* QuartzCore.framework */,
 				2169A9BF15FE55E6002EAA3A /* UIKit.framework */,
 				2169A9C115FE55E6002EAA3A /* Foundation.framework */,
 				2169A9C315FE55E6002EAA3A /* CoreGraphics.framework */,
@@ -712,6 +716,7 @@
 				2169AA3C15FE8B0A002EAA3A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface BZViewController : UIViewController
+
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
+
+- (IBAction)spinImage:(id)sender;
 
 @end

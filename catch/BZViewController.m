@@ -7,20 +7,25 @@
 //
 
 #import "BZViewController.h"
+#import <QuartzCore/QuartzCore.h>
+
+#define RADIANS(degrees) ((degrees * (CGFloat)M_PI) / 180.0f)
 
 @interface BZViewController ()
+
+@property (nonatomic, readwrite) BOOL rotating;
 
 @end
 
 @implementation BZViewController
-@synthesize imageView;
+@synthesize imageView, rotating;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [[self view] setBackgroundColor:[UIColor purpleColor]];
-    
+    self.rotating = NO;
 }
 
 - (void)viewDidUnload
@@ -35,4 +40,33 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
+CGFloat DegreesToRadians(CGFloat degrees)
+{
+    return degrees * M_PI / 180;
+}
+
+NSNumber* DegreesToNumber(CGFloat degrees)
+{
+    return [NSNumber numberWithFloat:
+            DegreesToRadians(degrees)];
+}
+
+- (IBAction)spinImage:(id)sender {
+    if (self.rotating) {
+        self.rotating = NO;
+        //Stop Transform
+    } else {
+        self.rotating = YES;
+        //Start Transform
+        CABasicAnimation *rotationAnimation = [CABasicAnimation 
+                                               animationWithKeyPath:@"transform.rotation.z"];
+        
+        [rotationAnimation setFromValue:DegreesToNumber(0)];
+        [rotationAnimation setToValue:DegreesToNumber(360)];
+        [rotationAnimation setDuration:3.0f];
+        [rotationAnimation setRepeatCount:10000];
+        
+        [[self.imageView layer] addAnimation:rotationAnimation forKey:@"rotate"];
+    }
+}
 @end
