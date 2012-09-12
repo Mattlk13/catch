@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #define RADIANS(degrees) ((degrees * (CGFloat)M_PI) / 180.0f)
+#define kUpdateFrequency 60.0f
 
 @interface BZViewController ()
 
@@ -40,17 +41,6 @@
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
-CGFloat DegreesToRadians(CGFloat degrees)
-{
-    return degrees * M_PI / 180;
-}
-
-NSNumber* DegreesToNumber(CGFloat degrees)
-{
-    return [NSNumber numberWithFloat:
-            DegreesToRadians(degrees)];
-}
-
 - (IBAction)spinImage:(id)sender {
     if (self.rotating) {
         self.rotating = NO;
@@ -63,8 +53,8 @@ NSNumber* DegreesToNumber(CGFloat degrees)
         CABasicAnimation *rotationAnimation = [CABasicAnimation 
                                                animationWithKeyPath:@"transform.rotation.z"];
         
-        [rotationAnimation setFromValue:DegreesToNumber(0)];
-        [rotationAnimation setToValue:DegreesToNumber(360)];
+        [rotationAnimation setFromValue:[NSNumber numberWithFloat:RADIANS(0)]];
+        [rotationAnimation setToValue:[NSNumber numberWithFloat:RADIANS(360)]];
         [rotationAnimation setDuration:3.0f];
         [rotationAnimation setRepeatCount:10000];
         
