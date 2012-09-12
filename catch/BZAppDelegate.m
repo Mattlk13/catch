@@ -63,6 +63,8 @@
                 
                 // Enable Game Center Functionality
                 self.gameCenterAuthenticationComplete = YES;
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You're Signed In!" message:@"Yay!" delegate:nil cancelButtonTitle:@"OK!" otherButtonTitles:nil];
+                [alert show];
                 
                 if (! self.currentPlayerID || ! [self.currentPlayerID isEqualToString:localPlayer.playerID]) {
                     
@@ -74,6 +76,12 @@
             } else {
                 // No user is logged into Game Center, run without Game Center support or user interface.
                 self.gameCenterAuthenticationComplete = NO;
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Game Center Support" message:@"Bummer!" delegate:nil cancelButtonTitle:@"OK!" otherButtonTitles:nil];
+                [alert show];
+            }
+            
+            if (error) {
+                NSLog(@"%@", error);
             }
         }];
     }
