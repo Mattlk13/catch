@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BZViewController : UIViewController
+@interface BZViewController : UIViewController <UIAccelerometerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 
