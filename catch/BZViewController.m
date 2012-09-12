@@ -44,16 +44,28 @@
     return NO;
 }
 
+- (void)stopSpinImage {
+    self.rotating = NO;
+    [[self.imageView layer] removeAnimationForKey:@"rotate"];
+}
+
+- (void)startSpinImage:(BOOL)force {
+    if (force && self.rotating) {
+        [self stopSpinImage];
+        [self spinImage:nil];
+    } else {
+        [self spinImage:nil];
+    }
+}
+
 - (IBAction)spinImage:(id)sender {
     if (self.rotating) {
-        self.rotating = NO;
-        
-        [[self.imageView layer] removeAnimationForKey:@"rotate"];
+        [self stopSpinImage];
         //Stop Transform
     } else {
         self.rotating = YES;
         //Start Transform
-        CABasicAnimation *rotationAnimation = [CABasicAnimation 
+        CABasicAnimation *rotationAnimation = [CABasicAnimation
                                                animationWithKeyPath:@"transform.rotation.z"];
         
         [rotationAnimation setFromValue:[NSNumber numberWithFloat:RADIANS(0)]];
@@ -74,6 +86,7 @@
     static BOOL isThrowing = NO;
 //    NSLog(@"Acceleration x: %f, y: %f, z: %f", acceleration.x, acceleration.y, acceleration.z);
     if (!isThrowing && acceleration.x > 1.0f) {
+        [self startSpinImage:YES];
         CGFloat xPosFrom = self.imageView.frame.origin.x;
         CGFloat xPosTo = 700.0f;
         
@@ -92,6 +105,7 @@
                 [self.imageView setFrame:CGRectMake(xPosFrom, yPosFrom, width, height)];
             } completion:^(BOOL finished) {
                 isThrowing = NO;
+                [self stopSpinImage];
             }];
         }];
     }
