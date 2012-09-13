@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <GameKit/GameKit.h>
 
-@interface BZViewController : UIViewController <GKPeerPickerControllerDelegate, GKSessionDelegate,UIAccelerometerDelegate>
+@interface BZViewController : UIViewController <GKPeerPickerControllerDelegate, GKSessionDelegate,UIAccelerometerDelegate, UIAlertViewDelegate>
 
 @end

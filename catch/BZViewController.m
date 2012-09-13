@@ -14,9 +14,15 @@
 
 #define kCatchSessionID @"gkcatch"
 
+//set different thresholds for different devices
+
+#define kYAccelerationThreshold 0.05f
+#define kXAccelerationThreshold 1.0f
+
 typedef enum {
     kStateStartGame,
     kStatePicker,
+    kStateMultiplayerCoinToss, //Who will have the "ball" first
     kStateMultiplayer,
     kStateMultiplayerReconnect,
 } gameStates;
@@ -34,6 +40,16 @@ typedef enum {
 @property (nonatomic, readwrite) BOOL rotating;
 @property (nonatomic) NSInteger gameState;
 @property (nonatomic) NSInteger gameUniqueId;
+@property (nonatomic) CGFloat objectWidth;
+@property (nonatomic) CGFloat objectHeight;
+@property (nonatomic) CGFloat yPosOfObject;
+@property (nonatomic) CGFloat xPosOfObject;
+@property (nonatomic, readwrite) BOOL isThrowing;
+@property (nonatomic) UIAlertView *alert;
+@property (nonatomic) double lastAccelerometerUpdateAction;
+
+
+
 
 @end
 
@@ -47,6 +63,12 @@ typedef enum {
     self.rotating = NO;
     self.gamePeerID = nil;
     self.gameSession = nil;
+    self.objectWidth = self.imageView.frame.size.width;
+    self.objectHeight = self.imageView.frame.size.height;
+    self.yPosOfObject = self.imageView.frame.origin.y;
+    self.xPosOfObject = self.imageView.frame.origin.x;
+    self.isThrowing = NO;
+    self.lastAccelerometerUpdateAction = 0;
     
     NSString *uid = (__bridge NSString *)(CFUUIDCreate(NULL));
     self.gameUniqueId = [uid hash];
@@ -70,6 +92,9 @@ typedef enum {
 {
     return NO;
 }
+
+#pragma mark -
+#pragma mark UI
 
 - (void)stopSpinImage {
     self.rotating = NO;
@@ -112,39 +137,51 @@ typedef enum {
     }
 }
 
+- (void)objectComesToScreen {
+    [self.imageView setFrame:CGRectMake(700.0f, -500.0f, self.objectWidth, self.objectHeight)];
+    [UIView animateWithDuration:2.0f animations:^{
+        [self.imageView setFrame:CGRectMake(self.xPosOfObject, self.yPosOfObject, self.objectWidth, self.objectHeight)];
+    } completion:^(BOOL finished) {
+        [self stopSpinImage];
+    }];
+    self.isThrowing = NO;
+}
+
 #pragma mark -
 #pragma mark Accelerometer delegates
 
 -(void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration
 {
-    //Throw Tyra off the screen
-    static BOOL isThrowing = NO;
-    CGFloat accelX = acceleration.x;
-    CGFloat accelY = acceleration.y;
-//    NSLog(@"Acceleration x: %f, y: %f, z: %f", acceleration.x, acceleration.y, acceleration.z);
-    if (!isThrowing && accelX > 2.0f && accelY > 1.0f) {
-        [self startSpinImage:YES];
-        CGFloat xPosFrom = self.imageView.frame.origin.x;
-        CGFloat xPosTo = 700.0f;
-        
-        CGFloat yPosFrom = self.imageView.frame.origin.y;
-        CGFloat yPosTo = -500.0f;
-        
-        CGFloat width = self.imageView.frame.size.width;
-        CGFloat height = self.imageView.frame.size.height;
-        
-        [UIView animateWithDuration:accelX animations:^{
-            isThrowing = YES;
-            [self.imageView setFrame:CGRectMake(xPosTo, yPosTo, width, height)];
-        } completion:^(BOOL finished) {
-            //Bring Tyra back to the screen until we are connected to another player
+    if ((double)acceleration.timestamp - self.lastAccelerometerUpdateAction > 1.0f) {
+        self.lastAccelerometerUpdateAction = (double)acceleration.timestamp;
+        //Throw Tyra off the screen
+        CGFloat accelX = acceleration.x;
+        CGFloat accelY = acceleration.y;
+        //    NSLog(@"Acceleration x: %f, y: %f, z: %f", acceleration.x, acceleration.y, acceleration.z);
+        if (!self.isThrowing
+            && (accelX > kXAccelerationThreshold || accelX < -kXAccelerationThreshold)
+            && (accelY > kYAccelerationThreshold || accelY < -kYAccelerationThreshold)) {
+            [self startSpinImage:YES];
+            CGFloat xPosTo = 700.0f;
+            CGFloat yPosTo = -500.0f;
+            
+            
+            
             [UIView animateWithDuration:accelX animations:^{
-                [self.imageView setFrame:CGRectMake(xPosFrom, yPosFrom, width, height)];
+                self.isThrowing = YES;
+                [self.imageView setFrame:CGRectMake(xPosTo, yPosTo, self.objectWidth, self.objectHeight)];
             } completion:^(BOOL finished) {
-                isThrowing = NO;
-                [self stopSpinImage];
+                //Bring Tyra back to the screen until we are connected to another player
+                if (!self.gameSession) {
+                    [self objectComesToScreen];
+                } else {
+                    NSError *error;
+                    NSInteger gameID = self.gameUniqueId;
+                    NSData *dataToSend = [NSData dataWithBytes:&gameID length:sizeof(gameID)];
+                    [self.gameSession sendData:dataToSend toPeers:[NSArray arrayWithObject:self.gamePeerID] withDataMode:GKSendDataReliable error:&error];
+                }
             }];
-        }];
+        }
     }
 }
 
@@ -152,7 +189,10 @@ typedef enum {
 #pragma mark Send/Receive data methods
 
 - (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession:(GKSession *)session context:(void *)context {
-    //
+    //if CoinToss packet then set which person has Tyra initially
+    
+    //otherwise, it's just the game of catch
+    [self objectComesToScreen];
 }
 
 #pragma mark -
@@ -203,7 +243,7 @@ typedef enum {
     picker.delegate = nil;
     
     // Start Multiplayer game by entering a cointoss state to determine who is server/client.
-    self.gameState = kStateMultiplayer;
+    self.gameState = kStateMultiplayerCoinToss;
 }
 
 #pragma mark -
@@ -219,16 +259,16 @@ typedef enum {
         
         // Update user alert or throw alert if it isn't already up
         NSString *message = [NSString stringWithFormat:@"Could not reconnect with %@.", [session displayNameForPeer:peerID]];
-        UIAlertView *alert;
         
         if(self.gameState == kStateMultiplayerReconnect)  {
-            alert = [[UIAlertView alloc] initWithTitle:@"Lost Connection" message:message delegate:self cancelButtonTitle:@"End Game" otherButtonTitles:nil];
+            self.alert = [[UIAlertView alloc] initWithTitle:@"Lost Connection" message:message delegate:self cancelButtonTitle:@"End Game" otherButtonTitles:nil];
+            [session cancelConnectToPeer:self.gamePeerID];
         }
         else {
-            alert = [[UIAlertView alloc] initWithTitle:@"Lost Connection" message:message delegate:self cancelButtonTitle:@"End Game" otherButtonTitles:nil];
+            self.alert = [[UIAlertView alloc] initWithTitle:@"Lost Connection" message:message delegate:self cancelButtonTitle:@"End Game" otherButtonTitles:nil];
         }
            
-        [alert show];
+        [self.alert show];
         
         // go back to start mode
         self.gameState = kStateStartGame;
@@ -271,12 +311,13 @@ typedef enum {
             [self invalidateSession:self.gameSession];
             self.gameSession = nil;
         }
-        
     } else if(newState == kStateMultiplayer)
     {
         [self.connectButton setTitle:@"Connected!" forState:UIControlStateNormal];
         [self.connectButton setTitle:@"Connected!" forState:UIControlStateDisabled];
         self.connectButton.enabled = NO;
+    } else if(newState == kStateMultiplayerCoinToss) {
+        
     } else {
         [self.connectButton setTitle:@"Connecting..." forState:UIControlStateNormal];
         [self.connectButton setTitle:@"Connecting..." forState:UIControlStateDisabled];
@@ -285,6 +326,14 @@ typedef enum {
     _gameState = newState;
 }
 
+#pragma mark -
+#pragma mark UIAlertViewDelegate
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    // 0 index is "End Game" button
+    if(buttonIndex == 0) {
+        self.gameState = kStateStartGame;
+    }
+}
 
 @end
