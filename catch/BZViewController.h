@@ -3,15 +3,12 @@
 //  catch
 //
 //  Created by Glenna Buford on 9/10/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 Blazing Cloud, Inc. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import <GameKit/GameKit.h>
 
-@interface BZViewController : UIViewController <UIAccelerometerDelegate>
-
-@property (strong, nonatomic) IBOutlet UIImageView *imageView;
-
-- (IBAction)spinImage:(id)sender;
+@interface BZViewController : UIViewController <GKPeerPickerControllerDelegate, GKSessionDelegate,UIAccelerometerDelegate>
 
 @end

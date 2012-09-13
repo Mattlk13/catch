@@ -11,12 +11,8 @@
 
 @implementation BZAppDelegate
 
-@synthesize window = _window;
-
 #pragma mark -
 #pragma mark Game Center Support
-
-@synthesize currentPlayerID, gameCenterAuthenticationComplete;
 
 - (BOOL)isGameCenterAvailable {
     // check for presence of GKLocalPlayer API
@@ -63,9 +59,6 @@
                 
                 // Enable Game Center Functionality
                 self.gameCenterAuthenticationComplete = YES;
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You're Signed In!" message:@"Yay!" delegate:nil cancelButtonTitle:@"OK!" otherButtonTitles:nil];
-                [alert show];
-                
                 if (! self.currentPlayerID || ! [self.currentPlayerID isEqualToString:localPlayer.playerID]) {
                     
                     // Current playerID has changed. Create/Load a game state around the new user.
@@ -88,6 +81,18 @@
     
     // The user is not authenticated until the Completion Handler block is called.
     return YES;
+}
+
+- (void)setGameCenterAuthenticationComplete:(BOOL)gcComplete {
+    NSNotification *note;
+    if (gcComplete) {
+        note = [NSNotification notificationWithName:@"UpdateButtonHidden" object:self userInfo:@{@"hidden":@"NO"}];
+    } else {
+        note = [NSNotification notificationWithName:@"UpdateButtonHidden" object:self userInfo:@{@"hidden":@"YES"}];
+    }
+    [[NSNotificationCenter defaultCenter] postNotification:note];
+    _gameCenterAuthenticationComplete = gcComplete;
+
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
