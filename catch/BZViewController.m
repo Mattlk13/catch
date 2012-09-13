@@ -19,6 +19,19 @@
 #define kYAccelerationThreshold 0.05f
 #define kXAccelerationThreshold 1.0f
 
+//imageView position off screen
+#define kXPosOffScreen 700.0f
+#define kYPosOffScreen -500.0f
+
+//Network tokens to know what state we are in
+typedef enum {
+    kNetworkStateCoinToss,
+    kNetworkStateGamePlay,
+} networkStates;
+
+//Network packet size
+#define kMaxGamePacketSize 1024
+
 typedef enum {
     kStateStartGame,
     kStatePicker,
@@ -96,6 +109,10 @@ typedef enum {
 #pragma mark -
 #pragma mark UI
 
+- (void)positionImageOffScreen {
+    [self.imageView setFrame:CGRectMake(kXPosOffScreen, kYPosOffScreen, self.objectWidth, self.objectHeight)];
+}
+
 - (void)stopSpinImage {
     self.rotating = NO;
     [[self.imageView layer] removeAnimationForKey:@"rotate"];
@@ -138,7 +155,8 @@ typedef enum {
 }
 
 - (void)objectComesToScreen {
-    [self.imageView setFrame:CGRectMake(700.0f, -500.0f, self.objectWidth, self.objectHeight)];
+    self.imageView.hidden = NO;
+    [self.imageView setFrame:CGRectMake(kXPosOffScreen, kYPosOffScreen, self.objectWidth, self.objectHeight)];
     [UIView animateWithDuration:2.0f animations:^{
         [self.imageView setFrame:CGRectMake(self.xPosOfObject, self.yPosOfObject, self.objectWidth, self.objectHeight)];
     } completion:^(BOOL finished) {
@@ -162,23 +180,18 @@ typedef enum {
             && (accelX > kXAccelerationThreshold || accelX < -kXAccelerationThreshold)
             && (accelY > kYAccelerationThreshold || accelY < -kYAccelerationThreshold)) {
             [self startSpinImage:YES];
-            CGFloat xPosTo = 700.0f;
-            CGFloat yPosTo = -500.0f;
-            
-            
-            
-            [UIView animateWithDuration:accelX animations:^{
+ 
+            [UIView animateWithDuration:accelX * 2.0f animations:^{
                 self.isThrowing = YES;
-                [self.imageView setFrame:CGRectMake(xPosTo, yPosTo, self.objectWidth, self.objectHeight)];
+                [self positionImageOffScreen];
+//                [self.imageView setFrame:CGRectMake(kXPosOffScreen, kYPosOffScreen, self.objectWidth, self.objectHeight)];
             } completion:^(BOOL finished) {
                 //Bring Tyra back to the screen until we are connected to another player
                 if (!self.gameSession) {
                     [self objectComesToScreen];
                 } else {
-                    NSError *error;
                     NSInteger gameID = self.gameUniqueId;
-                    NSData *dataToSend = [NSData dataWithBytes:&gameID length:sizeof(gameID)];
-                    [self.gameSession sendData:dataToSend toPeers:[NSArray arrayWithObject:self.gamePeerID] withDataMode:GKSendDataReliable error:&error];
+                    [self sendNetworkPacket:self.gameSession packetID:kNetworkStateGamePlay withData:&gameID ofLength:sizeof(int)];
                 }
             }];
         }
@@ -189,10 +202,42 @@ typedef enum {
 #pragma mark Send/Receive data methods
 
 - (void)receiveData:(NSData *)data fromPeer:(NSString *)peer inSession:(GKSession *)session context:(void *)context {
-    //if CoinToss packet then set which person has Tyra initially
     
+    unsigned char *incomingPacket = (unsigned char *)[data bytes];
+    int *pIntData = (int *)&incomingPacket[0];
+
+    int packetID = pIntData[0];
+    NSInteger peerGameUniqueId = pIntData[1];
+    
+    //if CoinToss packet then set which person has Tyra initially
+    if (packetID == kNetworkStateCoinToss) {
+        if (peerGameUniqueId > self.gameUniqueId) {
+            //remove object
+            self.imageView.hidden = YES;
+        }
+        self.gameState = kStateMultiplayer;
+    } else {
     //otherwise, it's just the game of catch
-    [self objectComesToScreen];
+        [self objectComesToScreen];
+    }
+}
+
+- (void)sendNetworkPacket:(GKSession *)session packetID:(int)packetID withData:(void *)data ofLength:(int)length {
+    static unsigned char networkPacket[kMaxGamePacketSize];
+    const unsigned int packetHeaderSize = 1 * sizeof(int); // we have one "int" for our header
+    
+    if(length < (kMaxGamePacketSize - packetHeaderSize)) { // our networkPacket buffer size minus the size of the header info
+        int *pIntData = (int *)&networkPacket[0];
+        // header info
+        pIntData[0] = packetID;
+        // copy data in after the header
+        memcpy( &networkPacket[packetHeaderSize], data, length );
+        
+        NSData *packet = [NSData dataWithBytes: networkPacket length: (length+8)];
+        
+        [self.gameSession sendData:packet toPeers:[NSArray arrayWithObject:self.gamePeerID] withDataMode:GKSendDataReliable error:nil];
+    }
+    NSLog(@"UH OH");
 }
 
 #pragma mark -
@@ -317,7 +362,8 @@ typedef enum {
         [self.connectButton setTitle:@"Connected!" forState:UIControlStateDisabled];
         self.connectButton.enabled = NO;
     } else if(newState == kStateMultiplayerCoinToss) {
-        
+        NSInteger gameID = self.gameUniqueId;
+        [self sendNetworkPacket:self.gameSession packetID:kNetworkStateCoinToss withData:&gameID ofLength:sizeof(int)];
     } else {
         [self.connectButton setTitle:@"Connecting..." forState:UIControlStateNormal];
         [self.connectButton setTitle:@"Connecting..." forState:UIControlStateDisabled];
