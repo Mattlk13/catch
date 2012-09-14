@@ -278,9 +278,12 @@
     self.gameState = kStateStartGame;
 }
 
+- (GKSession*)getSession {
+    return [[GKSession alloc] initWithSessionID:kCatchSessionID displayName:nil sessionMode:GKSessionModePeer];
+}
+
 - (GKSession *)peerPickerController:(GKPeerPickerController *)picker sessionForConnectionType:(GKPeerPickerConnectionType)type {
-    GKSession *session = [[GKSession alloc] initWithSessionID:kCatchSessionID displayName:nil sessionMode:GKSessionModePeer];
-    return session; // peer picker retains a reference, so autorelease ours so we don't leak.
+    return [self getSession]; // peer picker retains a reference, so autorelease ours so we don't leak.
 }
 
 - (void)peerPickerController:(GKPeerPickerController *)picker didConnectPeer:(NSString *)peerID toSession:(GKSession *)session {
