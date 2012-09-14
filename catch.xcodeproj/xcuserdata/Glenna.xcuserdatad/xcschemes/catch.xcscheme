@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   version = "1.3">
+   version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
@@ -26,6 +26,25 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
+      <PostActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "set PLATFORM_PREFERRED_ARCH to system attribute &quot;PLATFORM_PREFERRED_ARCH&quot;&#10;set OBJECT_FILE_DIR to system attribute &quot;OBJECT_FILE_DIR&quot;&#10;set BUILD_VARIANTS to system attribute &quot;BUILD_VARIANTS&quot;&#10;set coverageDir to OBJECT_FILE_DIR &amp; &quot;-&quot; &amp; BUILD_VARIANTS &amp; &quot;/&quot; &amp; PLATFORM_PREFERRED_ARCH&#10;if PLATFORM_PREFERRED_ARCH is equal to &quot;i386&quot; then&#10;tell application &quot;CoverStory&quot;&#10;activate&#10;set coverage to open coverageDir&#10;end tell&#10;end if"
+               shellToInvoke = "/usr/bin/osascript">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "2169A9E415FE6D2B002EAA3A"
+                     BuildableName = "Unit Specs.octest"
+                     BlueprintName = "Unit Specs"
+                     ReferencedContainer = "container:catch.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PostActions>
       <Testables>
          <TestableReference
             skipped = "NO">

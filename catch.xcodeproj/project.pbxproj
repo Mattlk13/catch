@@ -19,6 +19,9 @@
 		21569AB41603D28500B3A868 /* BZVCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 21569AB31603D1ED00B3A868 /* BZVCConstants.m */; };
 		21569AB51603D28600B3A868 /* BZVCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 21569AB31603D1ED00B3A868 /* BZVCConstants.m */; };
 		21569AB61603D93100B3A868 /* Tyra.png in Resources */ = {isa = PBXBuildFile; fileRef = 2169A9DE15FE6004002EAA3A /* Tyra.png */; };
+		21569AB91603F75100B3A868 /* CoverageFix.m in Sources */ = {isa = PBXBuildFile; fileRef = 21569AB71603F70A00B3A868 /* CoverageFix.m */; };
+		21569ABA1603F75D00B3A868 /* CoverageFix.m in Sources */ = {isa = PBXBuildFile; fileRef = 21569AB71603F70A00B3A868 /* CoverageFix.m */; };
+		21569ABB1603F75E00B3A868 /* CoverageFix.m in Sources */ = {isa = PBXBuildFile; fileRef = 21569AB71603F70A00B3A868 /* CoverageFix.m */; };
 		2169A9C015FE55E6002EAA3A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2169A9BF15FE55E6002EAA3A /* UIKit.framework */; };
 		2169A9C215FE55E6002EAA3A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2169A9C115FE55E6002EAA3A /* Foundation.framework */; };
 		2169A9C415FE55E6002EAA3A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2169A9C315FE55E6002EAA3A /* CoreGraphics.framework */; };
@@ -32,7 +35,6 @@
 		2169A9E815FE6D2C002EAA3A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2169A9BF15FE55E6002EAA3A /* UIKit.framework */; };
 		2169A9E915FE6D2C002EAA3A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2169A9C115FE55E6002EAA3A /* Foundation.framework */; };
 		2169A9EF15FE6D2C002EAA3A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2169A9ED15FE6D2C002EAA3A /* InfoPlist.strings */; };
-		2169A9F215FE6D2D002EAA3A /* Unit_Specs.m in Sources */ = {isa = PBXBuildFile; fileRef = 2169A9F115FE6D2D002EAA3A /* Unit_Specs.m */; };
 		2169AA0115FE70A5002EAA3A /* BZFirstUnitSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2169AA0015FE70A5002EAA3A /* BZFirstUnitSpec.m */; };
 		2169AA0E15FE8913002EAA3A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2169A9CB15FE55E6002EAA3A /* main.m */; };
 		2169AA0F15FE8913002EAA3A /* BZAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2169A9CF15FE55E6002EAA3A /* BZAppDelegate.m */; };
@@ -66,6 +68,7 @@
 		2144DF781602A7FB00CA6E43 /* BZGameCenterAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZGameCenterAuth.m; sourceTree = "<group>"; };
 		2144DF881603AD8E00CA6E43 /* BZViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZViewControllerSpec.m; sourceTree = "<group>"; };
 		21569AB31603D1ED00B3A868 /* BZVCConstants.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = BZVCConstants.m; sourceTree = "<group>"; };
+		21569AB71603F70A00B3A868 /* CoverageFix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoverageFix.m; sourceTree = "<group>"; };
 		2169A9BB15FE55E6002EAA3A /* catch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = catch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2169A9BF15FE55E6002EAA3A /* UIKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2169A9C115FE55E6002EAA3A /* Foundation.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -84,8 +87,6 @@
 		2169A9E615FE6D2C002EAA3A /* SenTestingKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		2169A9EC15FE6D2C002EAA3A /* Unit Specs-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Unit Specs-Info.plist"; sourceTree = "<group>"; };
 		2169A9EE15FE6D2C002EAA3A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		2169A9F015FE6D2D002EAA3A /* Unit_Specs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Unit_Specs.h; sourceTree = "<group>"; };
-		2169A9F115FE6D2D002EAA3A /* Unit_Specs.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Unit_Specs.m; sourceTree = "<group>"; };
 		2169A9F315FE6D2D002EAA3A /* Unit Specs-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Unit Specs-Prefix.pch"; sourceTree = "<group>"; };
 		2169AA0015FE70A5002EAA3A /* BZFirstUnitSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZFirstUnitSpec.m; sourceTree = "<group>"; };
 		2169AA1C15FE8913002EAA3A /* catch copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "catch copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -216,6 +217,7 @@
 				21569AB31603D1ED00B3A868 /* BZVCConstants.m */,
 				2169A9D415FE55E6002EAA3A /* BZViewController.h */,
 				2169A9D515FE55E6002EAA3A /* BZViewController.m */,
+				21569AB71603F70A00B3A868 /* CoverageFix.m */,
 				2169A9C615FE55E6002EAA3A /* Supporting Files */,
 			);
 			path = catch;
@@ -238,8 +240,6 @@
 		2169A9EA15FE6D2C002EAA3A /* Unit Specs */ = {
 			isa = PBXGroup;
 			children = (
-				2169A9F015FE6D2D002EAA3A /* Unit_Specs.h */,
-				2169A9F115FE6D2D002EAA3A /* Unit_Specs.m */,
 				2169AA0015FE70A5002EAA3A /* BZFirstUnitSpec.m */,
 				2144DF881603AD8E00CA6E43 /* BZViewControllerSpec.m */,
 				2144DF781602A7FB00CA6E43 /* BZGameCenterAuth.m */,
@@ -565,6 +565,7 @@
 				2169A9D015FE55E6002EAA3A /* BZAppDelegate.m in Sources */,
 				2169A9D615FE55E6002EAA3A /* BZViewController.m in Sources */,
 				21569AB51603D28600B3A868 /* BZVCConstants.m in Sources */,
+				21569ABA1603F75D00B3A868 /* CoverageFix.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -572,11 +573,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2169A9F215FE6D2D002EAA3A /* Unit_Specs.m in Sources */,
 				2169AA0115FE70A5002EAA3A /* BZFirstUnitSpec.m in Sources */,
 				2144DF861603AD1100CA6E43 /* BZViewController.m in Sources */,
 				2144DF891603AD8E00CA6E43 /* BZViewControllerSpec.m in Sources */,
 				21569AB41603D28500B3A868 /* BZVCConstants.m in Sources */,
+				21569AB91603F75100B3A868 /* CoverageFix.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -587,6 +588,7 @@
 				2169AA0E15FE8913002EAA3A /* main.m in Sources */,
 				2169AA0F15FE8913002EAA3A /* BZAppDelegate.m in Sources */,
 				2169AA1015FE8913002EAA3A /* BZViewController.m in Sources */,
+				21569ABB1603F75E00B3A868 /* CoverageFix.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -716,6 +718,8 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Unit Specs/Unit Specs-Prefix.pch";
 				INFOPLIST_FILE = "Unit Specs/Unit Specs-Info.plist";
@@ -734,6 +738,8 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Unit Specs/Unit Specs-Prefix.pch";
 				INFOPLIST_FILE = "Unit Specs/Unit Specs-Info.plist";
