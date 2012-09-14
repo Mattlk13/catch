@@ -66,6 +66,9 @@ typedef enum {
 
 @end
 
+#pragma mark -
+#pragma mark View Stuff
+
 @implementation BZViewController
 
 - (void)viewDidLoad
@@ -103,14 +106,14 @@ typedef enum {
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return NO;
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 #pragma mark -
 #pragma mark UI
 
 - (void)positionImageOffScreen {
-    [self.imageView setFrame:CGRectMake(kXPosOffScreen, kYPosOffScreen, self.objectWidth, self.objectHeight)];
+    [self setImageFrameWithX:kXPosOffScreen Y:kYPosOffScreen Width:self.objectWidth andHeight:self.objectHeight];
 }
 
 - (void)stopSpinImage {
@@ -129,6 +132,30 @@ typedef enum {
 
 - (void)updateButtonHidden:(NSNotification *)note {
     self.connectButton.hidden = [[note.userInfo objectForKey:@"hidden"] boolValue];
+}
+
+- (void)enableConnectButton:(BOOL)enable {
+    self.connectButton.enabled = enable;
+}
+
+- (void)hideImageView:(BOOL)hide {
+    self.imageView.hidden = hide;
+}
+
+- (void)positionImageViewAtOriginalPosition {
+    [self setImageFrameWithX:self.xPosOfObject Y:self.yPosOfObject Width:self.objectWidth andHeight:self.objectHeight];
+}
+
+- (void)setImageFrameWithX:(CGFloat)xPos Y:(CGFloat)yPos Width:(CGFloat)width andHeight:(CGFloat)height {
+    [self.imageView setFrame:CGRectMake(xPos, yPos, width, height)];
+}
+
+- (void)setButtonTitleForAllStates:(NSString*)title {
+    [self.connectButton setTitle:title forState:UIControlStateNormal];
+    [self.connectButton setTitle:title forState:UIControlStateDisabled];
+    [self.connectButton setTitle:title forState:UIControlStateHighlighted];
+    [self.connectButton setTitle:title forState:UIControlStateReserved];
+    [self.connectButton setTitle:title forState:UIControlStateSelected];
 }
 
 - (IBAction)connectWithGC:(id)sender {
@@ -155,10 +182,10 @@ typedef enum {
 }
 
 - (void)objectComesToScreen {
-    self.imageView.hidden = NO;
-    [self.imageView setFrame:CGRectMake(kXPosOffScreen, kYPosOffScreen, self.objectWidth, self.objectHeight)];
+    [self hideImageView:NO];
+    [self positionImageOffScreen];
     [UIView animateWithDuration:2.0f animations:^{
-        [self.imageView setFrame:CGRectMake(self.xPosOfObject, self.yPosOfObject, self.objectWidth, self.objectHeight)];
+        [self positionImageViewAtOriginalPosition];
     } completion:^(BOOL finished) {
         [self stopSpinImage];
     }];
@@ -184,7 +211,6 @@ typedef enum {
             [UIView animateWithDuration:accelX * 2.0f animations:^{
                 self.isThrowing = YES;
                 [self positionImageOffScreen];
-//                [self.imageView setFrame:CGRectMake(kXPosOffScreen, kYPosOffScreen, self.objectWidth, self.objectHeight)];
             } completion:^(BOOL finished) {
                 //Bring Tyra back to the screen until we are connected to another player
                 if (!self.gameSession) {
@@ -213,7 +239,7 @@ typedef enum {
     if (packetID == kNetworkStateCoinToss) {
         if (peerGameUniqueId > self.gameUniqueId) {
             //remove object
-            self.imageView.hidden = YES;
+            [self hideImageView:YES];
         }
         self.gameState = kStateMultiplayer;
     } else {
@@ -349,8 +375,10 @@ typedef enum {
 
 - (void)setGameState:(NSInteger)newState {
     if(newState == kStateStartGame) {
-        self.connectButton.enabled = YES;
-        [self.connectButton setTitle:@"Connect with other players" forState:UIControlStateNormal];
+        [self positionImageViewAtOriginalPosition];
+        [self hideImageView:NO];
+        [self enableConnectButton:YES];
+        [self setButtonTitleForAllStates:@"Connect with other players"];
         if(self.gameSession) {
             // invalidate session and release it.
             [self invalidateSession:self.gameSession];
@@ -358,16 +386,14 @@ typedef enum {
         }
     } else if(newState == kStateMultiplayer)
     {
-        [self.connectButton setTitle:@"Connected!" forState:UIControlStateNormal];
-        [self.connectButton setTitle:@"Connected!" forState:UIControlStateDisabled];
-        self.connectButton.enabled = NO;
+        [self setButtonTitleForAllStates:@"Connected!"];
+        [self enableConnectButton:NO];
     } else if(newState == kStateMultiplayerCoinToss) {
         NSInteger gameID = self.gameUniqueId;
         [self sendNetworkPacket:self.gameSession packetID:kNetworkStateCoinToss withData:&gameID ofLength:sizeof(int)];
     } else {
-        [self.connectButton setTitle:@"Connecting..." forState:UIControlStateNormal];
-        [self.connectButton setTitle:@"Connecting..." forState:UIControlStateDisabled];
-        self.connectButton.enabled = NO;
+        [self setButtonTitleForAllStates:@"Connecting..."];
+        [self enableConnectButton:NO];
     }
     _gameState = newState;
 }
