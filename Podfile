@@ -1,11 +1,18 @@
 platform :ios
   
 
+
+target :matchers, :exclusive => true do
+      pod 'OCHamcrest'
+      link_with ['App Specs', 'Unit Specs']
+end
  
-target :'Unit Specs', :exclusive => true do
-      pod 'Kiwi'            :git => 'https://github.com/blazingcloud/Kiwi.git'
+target :spec, :exclusive => true do
+      pod 'Kiwi',            :git => 'https://github.com/blazingcloud/Kiwi.git'
+      link_with ['App Specs', 'Unit Specs']
   end
 
- target :'Integration Tests' do
+ target :integration do
      pod 'KIF'
+     link_with 'Integration Tests'
  end

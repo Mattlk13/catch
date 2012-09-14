@@ -7,10 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1DCFBEAA77E74C548EAC3B14 /* libPods-matchers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45456042B5DF444D83ADB1F7 /* libPods-matchers.a */; };
 		21425FF715FEC5D600DCFF9D /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21425FF615FEC5D600DCFF9D /* GameKit.framework */; };
 		21425FFB1600FFB400DCFF9D /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 21425FF91600FFB400DCFF9D /* icon.png */; };
 		21425FFC1600FFB400DCFF9D /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 21425FFA1600FFB400DCFF9D /* icon@2x.png */; };
-		2144DF791602A7FB00CA6E43 /* BZGameCenterAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 2144DF781602A7FB00CA6E43 /* BZGameCenterAuth.m */; };
+		2144DF861603AD1100CA6E43 /* BZViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2169A9D515FE55E6002EAA3A /* BZViewController.m */; };
+		2144DF891603AD8E00CA6E43 /* BZViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 2144DF881603AD8E00CA6E43 /* BZViewControllerSpec.m */; };
+		21569AA71603B44600B3A868 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21425FF615FEC5D600DCFF9D /* GameKit.framework */; };
+		21569AA81603B44900B3A868 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2169AA5215FEA152002EAA3A /* QuartzCore.framework */; };
+		21569AA91603B45100B3A868 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2169A9C315FE55E6002EAA3A /* CoreGraphics.framework */; };
+		21569AB41603D28500B3A868 /* BZVCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 21569AB31603D1ED00B3A868 /* BZVCConstants.m */; };
+		21569AB51603D28600B3A868 /* BZVCConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 21569AB31603D1ED00B3A868 /* BZVCConstants.m */; };
+		21569AB61603D93100B3A868 /* Tyra.png in Resources */ = {isa = PBXBuildFile; fileRef = 2169A9DE15FE6004002EAA3A /* Tyra.png */; };
 		2169A9C015FE55E6002EAA3A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2169A9BF15FE55E6002EAA3A /* UIKit.framework */; };
 		2169A9C215FE55E6002EAA3A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2169A9C115FE55E6002EAA3A /* Foundation.framework */; };
 		2169A9C415FE55E6002EAA3A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2169A9C315FE55E6002EAA3A /* CoreGraphics.framework */; };
@@ -41,16 +49,23 @@
 		2169AA3615FE8B0A002EAA3A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2169AA3415FE8B0A002EAA3A /* InfoPlist.strings */; };
 		2169AA3915FE8B0A002EAA3A /* App_Specs.m in Sources */ = {isa = PBXBuildFile; fileRef = 2169AA3815FE8B0A002EAA3A /* App_Specs.m */; };
 		2169AA5315FEA152002EAA3A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2169AA5215FEA152002EAA3A /* QuartzCore.framework */; };
-		75A368D4D07B40899763C828 /* libPods-Unit Specs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E655B824B664A749CA0C406 /* libPods-Unit Specs.a */; };
+		2C7F300E4F1041C89E1D286A /* libPods-spec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4872DED59E0D449495CD74E7 /* libPods-spec.a */; };
+		933BFD45B6084D8589A23E82 /* libPods-integration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F4846C4CA0C46D7A7C8FA55 /* libPods-integration.a */; };
+		CF30A503B79544529C25BA84 /* libPods-spec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4872DED59E0D449495CD74E7 /* libPods-spec.a */; };
+		D4D5EF96B4F445639591AE56 /* libPods-matchers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45456042B5DF444D83ADB1F7 /* libPods-matchers.a */; };
 		D7BDF91EF461493FB48AB0AC /* libPods-Integration Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6EB21C7BBB04979BDFEAB71 /* libPods-Integration Tests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C91834D0F954427B56E3800 /* Pods-spec.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-spec.xcconfig"; path = "Pods/Pods-spec.xcconfig"; sourceTree = SOURCE_ROOT; };
+		105C68A5BA8745B795C0FD2B /* Pods-integration.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-integration.xcconfig"; path = "Pods/Pods-integration.xcconfig"; sourceTree = SOURCE_ROOT; };
 		1E655B824B664A749CA0C406 /* libPods-Unit Specs.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Unit Specs.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21425FF615FEC5D600DCFF9D /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		21425FF91600FFB400DCFF9D /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = SOURCE_ROOT; };
 		21425FFA1600FFB400DCFF9D /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = SOURCE_ROOT; };
 		2144DF781602A7FB00CA6E43 /* BZGameCenterAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZGameCenterAuth.m; sourceTree = "<group>"; };
+		2144DF881603AD8E00CA6E43 /* BZViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZViewControllerSpec.m; sourceTree = "<group>"; };
+		21569AB31603D1ED00B3A868 /* BZVCConstants.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.objc; fileEncoding = 4; path = BZVCConstants.m; sourceTree = "<group>"; };
 		2169A9BB15FE55E6002EAA3A /* catch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = catch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2169A9BF15FE55E6002EAA3A /* UIKit.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2169A9C115FE55E6002EAA3A /* Foundation.framework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -82,9 +97,13 @@
 		2169AA3815FE8B0A002EAA3A /* App_Specs.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = App_Specs.m; sourceTree = "<group>"; };
 		2169AA3A15FE8B0A002EAA3A /* App Specs-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "App Specs-Prefix.pch"; sourceTree = "<group>"; };
 		2169AA5215FEA152002EAA3A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		45456042B5DF444D83ADB1F7 /* libPods-matchers.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-matchers.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4872DED59E0D449495CD74E7 /* libPods-spec.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-spec.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F4846C4CA0C46D7A7C8FA55 /* libPods-integration.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-integration.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9036F18E7F14F309E697275 /* Pods-Unit Specs.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Unit Specs.xcconfig"; path = "Pods/Pods-Unit Specs.xcconfig"; sourceTree = SOURCE_ROOT; };
 		CECE328DAF47423599C070F9 /* Pods-Integration Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Integration Tests.xcconfig"; path = "Pods/Pods-Integration Tests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		D6EB21C7BBB04979BDFEAB71 /* libPods-Integration Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Integration Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF301208B71F4784AADF3CE3 /* Pods-matchers.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-matchers.xcconfig"; path = "Pods/Pods-matchers.xcconfig"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,7 +126,11 @@
 				2169A9E715FE6D2C002EAA3A /* SenTestingKit.framework in Frameworks */,
 				2169A9E815FE6D2C002EAA3A /* UIKit.framework in Frameworks */,
 				2169A9E915FE6D2C002EAA3A /* Foundation.framework in Frameworks */,
-				75A368D4D07B40899763C828 /* libPods-Unit Specs.a in Frameworks */,
+				D4D5EF96B4F445639591AE56 /* libPods-matchers.a in Frameworks */,
+				2C7F300E4F1041C89E1D286A /* libPods-spec.a in Frameworks */,
+				21569AA71603B44600B3A868 /* GameKit.framework in Frameworks */,
+				21569AA81603B44900B3A868 /* QuartzCore.framework in Frameworks */,
+				21569AA91603B45100B3A868 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +142,7 @@
 				2169AA1315FE8913002EAA3A /* Foundation.framework in Frameworks */,
 				2169AA1415FE8913002EAA3A /* CoreGraphics.framework in Frameworks */,
 				D7BDF91EF461493FB48AB0AC /* libPods-Integration Tests.a in Frameworks */,
+				933BFD45B6084D8589A23E82 /* libPods-integration.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,6 +153,8 @@
 				2169AA2E15FE8B0A002EAA3A /* SenTestingKit.framework in Frameworks */,
 				2169AA2F15FE8B0A002EAA3A /* UIKit.framework in Frameworks */,
 				2169AA3015FE8B0A002EAA3A /* Foundation.framework in Frameworks */,
+				1DCFBEAA77E74C548EAC3B14 /* libPods-matchers.a in Frameworks */,
+				CF30A503B79544529C25BA84 /* libPods-spec.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +172,9 @@
 				C9036F18E7F14F309E697275 /* Pods-Unit Specs.xcconfig */,
 				2169AA1F15FE8914002EAA3A /* catch copy-Info.plist */,
 				CECE328DAF47423599C070F9 /* Pods-Integration Tests.xcconfig */,
+				FF301208B71F4784AADF3CE3 /* Pods-matchers.xcconfig */,
+				0C91834D0F954427B56E3800 /* Pods-spec.xcconfig */,
+				105C68A5BA8745B795C0FD2B /* Pods-integration.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -171,6 +200,9 @@
 				2169A9E615FE6D2C002EAA3A /* SenTestingKit.framework */,
 				1E655B824B664A749CA0C406 /* libPods-Unit Specs.a */,
 				D6EB21C7BBB04979BDFEAB71 /* libPods-Integration Tests.a */,
+				45456042B5DF444D83ADB1F7 /* libPods-matchers.a */,
+				4872DED59E0D449495CD74E7 /* libPods-spec.a */,
+				9F4846C4CA0C46D7A7C8FA55 /* libPods-integration.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -181,6 +213,7 @@
 				2169A9D115FE55E6002EAA3A /* MainStoryboard.storyboard */,
 				2169A9CE15FE55E6002EAA3A /* BZAppDelegate.h */,
 				2169A9CF15FE55E6002EAA3A /* BZAppDelegate.m */,
+				21569AB31603D1ED00B3A868 /* BZVCConstants.m */,
 				2169A9D415FE55E6002EAA3A /* BZViewController.h */,
 				2169A9D515FE55E6002EAA3A /* BZViewController.m */,
 				2169A9C615FE55E6002EAA3A /* Supporting Files */,
@@ -208,6 +241,7 @@
 				2169A9F015FE6D2D002EAA3A /* Unit_Specs.h */,
 				2169A9F115FE6D2D002EAA3A /* Unit_Specs.m */,
 				2169AA0015FE70A5002EAA3A /* BZFirstUnitSpec.m */,
+				2144DF881603AD8E00CA6E43 /* BZViewControllerSpec.m */,
 				2144DF781602A7FB00CA6E43 /* BZGameCenterAuth.m */,
 				2169A9EB15FE6D2C002EAA3A /* Supporting Files */,
 			);
@@ -273,6 +307,8 @@
 				2169A9E215FE6D2B002EAA3A /* Resources */,
 				2169A9E315FE6D2B002EAA3A /* ShellScript */,
 				D9D438E5F64F464D9D401603 /* Copy Pods Resources */,
+				147DDF7EC37D41BDB96803C0 /* Copy Pods Resources */,
+				CB1D750CD54847988A4CC70E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -291,6 +327,7 @@
 				2169AA1115FE8913002EAA3A /* Frameworks */,
 				2169AA1515FE8913002EAA3A /* Resources */,
 				F297A1612BB541C1B16A44AC /* Copy Pods Resources */,
+				B2E6757AD88446E990762455 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -309,6 +346,8 @@
 				2169AA2915FE8B0A002EAA3A /* Frameworks */,
 				2169AA2A15FE8B0A002EAA3A /* Resources */,
 				2169AA2B15FE8B0A002EAA3A /* ShellScript */,
+				A9639FB80B6F42658A16D2F2 /* Copy Pods Resources */,
+				99C32940CC784571B1C62B0D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -366,6 +405,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2169A9EF15FE6D2C002EAA3A /* InfoPlist.strings in Resources */,
+				21569AB61603D93100B3A868 /* Tyra.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +430,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		147DDF7EC37D41BDB96803C0 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-matchers-resources.sh\"\n";
+		};
 		2169A9E315FE6D2B002EAA3A /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -415,6 +469,62 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		99C32940CC784571B1C62B0D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-spec-resources.sh\"\n";
+		};
+		A9639FB80B6F42658A16D2F2 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-matchers-resources.sh\"\n";
+		};
+		B2E6757AD88446E990762455 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-integration-resources.sh\"\n";
+		};
+		CB1D750CD54847988A4CC70E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-spec-resources.sh\"\n";
 		};
 		D9D438E5F64F464D9D401603 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -454,6 +564,7 @@
 				2169A9CC15FE55E6002EAA3A /* main.m in Sources */,
 				2169A9D015FE55E6002EAA3A /* BZAppDelegate.m in Sources */,
 				2169A9D615FE55E6002EAA3A /* BZViewController.m in Sources */,
+				21569AB51603D28600B3A868 /* BZVCConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,7 +574,9 @@
 			files = (
 				2169A9F215FE6D2D002EAA3A /* Unit_Specs.m in Sources */,
 				2169AA0115FE70A5002EAA3A /* BZFirstUnitSpec.m in Sources */,
-				2144DF791602A7FB00CA6E43 /* BZGameCenterAuth.m in Sources */,
+				2144DF861603AD1100CA6E43 /* BZViewController.m in Sources */,
+				2144DF891603AD8E00CA6E43 /* BZViewControllerSpec.m in Sources */,
+				21569AB41603D28500B3A868 /* BZVCConstants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,6 +658,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "armv7 armv6";
 			};
 			name = Debug;
 		};
@@ -565,6 +679,7 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv6";
 			};
 			name = Release;
 		};
@@ -594,7 +709,7 @@
 		};
 		2169A9F515FE6D2D002EAA3A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C9036F18E7F14F309E697275 /* Pods-Unit Specs.xcconfig */;
+			baseConfigurationReference = 0C91834D0F954427B56E3800 /* Pods-spec.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/catch.app/catch";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -605,13 +720,14 @@
 				GCC_PREFIX_HEADER = "Unit Specs/Unit Specs-Prefix.pch";
 				INFOPLIST_FILE = "Unit Specs/Unit Specs-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "armv7 armv6";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
 		2169A9F615FE6D2D002EAA3A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C9036F18E7F14F309E697275 /* Pods-Unit Specs.xcconfig */;
+			baseConfigurationReference = 0C91834D0F954427B56E3800 /* Pods-spec.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/catch.app/catch";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -622,13 +738,14 @@
 				GCC_PREFIX_HEADER = "Unit Specs/Unit Specs-Prefix.pch";
 				INFOPLIST_FILE = "Unit Specs/Unit Specs-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "armv7 armv6";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
 		2169AA1A15FE8913002EAA3A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CECE328DAF47423599C070F9 /* Pods-Integration Tests.xcconfig */;
+			baseConfigurationReference = 105C68A5BA8745B795C0FD2B /* Pods-integration.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -641,7 +758,7 @@
 		};
 		2169AA1B15FE8913002EAA3A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CECE328DAF47423599C070F9 /* Pods-Integration Tests.xcconfig */;
+			baseConfigurationReference = 105C68A5BA8745B795C0FD2B /* Pods-integration.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -654,6 +771,7 @@
 		};
 		2169AA3B15FE8B0A002EAA3A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C91834D0F954427B56E3800 /* Pods-spec.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/catch.app/catch";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -671,6 +789,7 @@
 		};
 		2169AA3C15FE8B0A002EAA3A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C91834D0F954427B56E3800 /* Pods-spec.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/catch.app/catch";
 				FRAMEWORK_SEARCH_PATHS = (

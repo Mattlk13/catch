@@ -14,15 +14,60 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
+		<key>Pods-integration.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
+		<key>Pods-matchers.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
+		<key>Pods-spec.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>21BACB272D1E4A1D9A613AEA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>72CA6135575B47DAB16F5E6B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7D39E0CB1A3E4B1A95F778EC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>81BD13A8D9584AEDA81C24FE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>B92FBEEEEA4544FE803B05A3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>BB147601EF0C4EE2B02F211A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>C02376DADAA84AF3A029DF1B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FD0788FA9F794FE6A083F841</key>
 		<dict>
 			<key>primary</key>
 			<true/>
