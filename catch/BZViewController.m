@@ -25,19 +25,19 @@
 
 //Network tokens to know what state we are in
 typedef enum {
-    kNetworkStateCoinToss,
-    kNetworkStateGamePlay,
+    kNetworkStateCoinToss = 0,
+    kNetworkStateGamePlay = 1,
 } networkStates;
 
 //Network packet size
 #define kMaxGamePacketSize 1024
 
 typedef enum {
-    kStateStartGame,
-    kStatePicker,
-    kStateMultiplayerCoinToss, //Who will have the "ball" first
-    kStateMultiplayer,
-    kStateMultiplayerReconnect,
+    kStateStartGame = 0,
+    kStatePicker = 1,
+    kStateMultiplayerCoinToss = 2, //Who will have the "ball" first
+    kStateMultiplayer = 3,
+    kStateMultiplayerReconnect = 4,
 } gameStates;
 
 @interface BZViewController ()
@@ -138,6 +138,11 @@ typedef enum {
     self.connectButton.enabled = enable;
 }
 
+- (void)setConnectButtonTitleAndEnable:(NSString*)message {
+    [self enableConnectButton:YES];
+    [self setButtonTitleForAllStates:message];
+}
+
 - (void)hideImageView:(BOOL)hide {
     self.imageView.hidden = hide;
 }
@@ -159,7 +164,11 @@ typedef enum {
 }
 
 - (IBAction)connectWithGC:(id)sender {
-    [self startPicker];
+    if (self.gameSession) {
+        [self.gameSession disconnectFromAllPeers];
+    } else {
+        [self startPicker];
+    }
 }
 
 - (IBAction)spinImage:(id)sender {
@@ -395,7 +404,7 @@ typedef enum {
         [self setButtonTitleForAllStates:@"Connecting..."];
         [self enableConnectButton:NO];
     }
-    _gameState = newState;
+    self.gameState = newState;
 }
 
 #pragma mark -
