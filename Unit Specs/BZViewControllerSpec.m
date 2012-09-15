@@ -1,5 +1,5 @@
 //
-//  BZFirstUnitSpec.m
+//  BZViewControllerSpec.m
 //  catch
 //
 //  Created by Glenna Buford on 9/10/12.
@@ -30,7 +30,10 @@
 @property (nonatomic) double lastAccelerometerUpdateAction;
 
 -(void)startPicker;
--(void)getPeerPicker;
+-(GKPeerPickerController*)getPeerPicker;
+-(GKSession*)getSession;
+-(void)invalidateSession:(GKSession*)session;
+- (void)sendNetworkPacket:(GKSession *)session packetID:(int)packetID withData:(void *)data ofLength:(int)length;
 
 @end
 
@@ -73,48 +76,60 @@ describe(@"BZViewController", ^{
         });
     });
     
-    context(@"PeerPickerController", ^{
-        context(@"startPicker", ^{
-            it(@"should start the peer picking process", ^{
-                //setup
-                id mockPicker = [KWMock mockForClass:[GKPeerPickerController class]];
-                [[bzvc should] receive:@selector(getPeerPicker) andReturn:mockPicker withCount:1];
-                [[mockPicker should] receive:@selector(setDelegate:) withCount:1];
-                [[mockPicker should] receive:@selector(show) withCount:1];
-                //test
-                [bzvc startPicker];
-                //validation
-                [[theValue(bzvc.gameState) should] equal:theValue(kStatePicker)];
-            });            
+    context(@"startPicker", ^{
+        it(@"should start the peer picking process", ^{
+            //setup
+            id mockPicker = [KWMock mockForClass:[GKPeerPickerController class]];
+            [[bzvc should] receive:@selector(getPeerPicker) andReturn:mockPicker withCount:1];
+            [[mockPicker should] receive:@selector(setDelegate:) withCount:1];
+            [[mockPicker should] receive:@selector(show) withCount:1];
+            //test
+            [bzvc startPicker];
+            //validation
+            [[theValue(bzvc.gameState) should] equal:theValue(kStatePicker)];
         });
-        context(@"peerpicker delegate methods", ^{
-            context(@"peerPickerControllerForConnectionTypes", ^{
-                it(@"should create and return a game sesstion", ^{
-                    id mockSession = [KWMock mockForClass:[GKSession class]];
-                    id mockPicker = [KWMock mockForClass:[GKPeerPickerController class]];
-                    [[bzvc should] receive:@selector(getSession) andReturn:mockSession withCount:1];
-                    [bzvc peerPickerController:mockPicker sessionForConnectionType:0];
-                });
+    });
+    
+    context(@"setGameState", ^{
+       it(@"should reset game properties if newState = kStateStartGame", ^{
+           bzvc.gameSession = [KWMock mockForClass:[GKSession class]];
+           [bzvc.gameSession shouldNotBeNil];
+           [[bzvc should] receive:@selector(invalidateSession:) withCount:1];
+           [[bzvc.gameSession should] receive:@selector(disconnectFromAllPeers) withCount:1];
+           [[bzvc.gameSession should] receive:@selector(setDataReceiveHandler:withContext:) withCount:1];
+           [[bzvc.gameSession should] receive:@selector(setAvailable:) withCount:1];
+           [[bzvc.gameSession should] receive:@selector(setDelegate:) withCount:1];
+           [bzvc setGameState:kStateStartGame];
+           [bzvc.gameSession shouldBeNil];
+       });
+    });
+    
+    context(@"PeerPicker delegate methods", ^{
+        context(@"peerPickerControllerForConnectionTypes", ^{
+            it(@"should create and return a game sesstion", ^{
+                id mockPicker = [KWMock mockForClass:[GKPeerPickerController class]];
+                [[bzvc should] receive:@selector(getSession) withCount:1];
+                [bzvc peerPickerController:mockPicker sessionForConnectionType:0];
             });
-            context(@"peerPickerControllerDidConnectPeerToSession", ^{
-                it(@"should start the session and send coin toss packet", ^{
-                    //setup
-                    id mockSession = [KWMock mockForClass:[GKSession class]];
-                    id mockPicker = [KWMock mockForClass:[GKPeerPickerController class]];
-                    [[mockSession should] receive:@selector(setDelegate:) withCount:1];
-                    [[mockSession should] receive:@selector(setDataReceiveHandler:withContext:)];
-                    [[mockPicker should] receive:@selector(dismiss) withCount:1];
-                    [[mockPicker should] receive:@selector(setDelegate:) withCount:1];
-                    [[mockSession should] receive:@selector(sendData:toPeers:withDataMode:error:) withCount:1];
-                    
-                    NSString* peerID = @"tyra";
-                    //action
-                    [bzvc peerPickerController:mockPicker didConnectPeer:peerID toSession:mockSession];
-                    //validation
-                    [[bzvc.gamePeerID should] equal:peerID];
-                    [[bzvc.gameSession should] equal:mockSession];
-                    [[theValue(bzvc.gameState) should] equal:theValue(kStateMultiplayerCoinToss)];
-                });
+        });
+        context(@"peerPickerControllerDidConnectPeerToSession", ^{
+            it(@"should start the session and send coin toss packet", ^{
+                //setup
+                id mockSession = [KWMock mockForClass:[GKSession class]];
+                id mockPicker = [KWMock mockForClass:[GKPeerPickerController class]];
+                [[mockSession should] receive:@selector(setDelegate:) withCount:1];
+                [[mockSession should] receive:@selector(setDataReceiveHandler:withContext:)];
+                [[mockPicker should] receive:@selector(dismiss) withCount:1];
+                [[mockPicker should] receive:@selector(setDelegate:) withCount:1];
+                [[mockSession should] receive:@selector(sendData:toPeers:withDataMode:error:) withCount:1];
+                
+                NSString* peerID = @"tyra";
+                //action
+                [bzvc peerPickerController:mockPicker didConnectPeer:peerID toSession:mockSession];
+                //validation
+                [[bzvc.gamePeerID should] equal:peerID];
+                [[bzvc.gameSession should] equal:mockSession];
+                [[theValue(bzvc.gameState) should] equal:theValue(kStateMultiplayerCoinToss)];
             });
         });
     });
