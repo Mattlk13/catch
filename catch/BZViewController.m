@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Blazing Cloud, Inc. All rights reserved.
 //
 
-#import "BZVCConstants.m"
+#import "BZVCConstants.h"
 #import "BZViewController.h"
 #import <QuartzCore/QuartzCore.h>
 

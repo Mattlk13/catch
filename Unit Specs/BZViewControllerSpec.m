@@ -8,7 +8,7 @@
 
 #import "OCHamcrest.h"
 #import "Kiwi.h"
-#import "BZVCConstants.m"
+#import "BZVCConstants.h"
 #import "BZViewController.h"
 
 @interface BZViewController (Test)
