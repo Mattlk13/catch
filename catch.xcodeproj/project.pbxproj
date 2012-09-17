@@ -49,6 +49,8 @@
 		2169AA3615FE8B0A002EAA3A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2169AA3415FE8B0A002EAA3A /* InfoPlist.strings */; };
 		2169AA3915FE8B0A002EAA3A /* App_Specs.m in Sources */ = {isa = PBXBuildFile; fileRef = 2169AA3815FE8B0A002EAA3A /* App_Specs.m */; };
 		2169AA5315FEA152002EAA3A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2169AA5215FEA152002EAA3A /* QuartzCore.framework */; };
+		216F620116064F790004DEE9 /* BZGameCenterAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 2144DF781602A7FB00CA6E43 /* BZGameCenterAuth.m */; };
+		216F620316064F950004DEE9 /* BZAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2169A9CF15FE55E6002EAA3A /* BZAppDelegate.m */; };
 		2C7F300E4F1041C89E1D286A /* libPods-spec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4872DED59E0D449495CD74E7 /* libPods-spec.a */; };
 		933BFD45B6084D8589A23E82 /* libPods-integration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F4846C4CA0C46D7A7C8FA55 /* libPods-integration.a */; };
 		CF30A503B79544529C25BA84 /* libPods-spec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4872DED59E0D449495CD74E7 /* libPods-spec.a */; };
@@ -574,6 +576,8 @@
 				2144DF861603AD1100CA6E43 /* BZViewController.m in Sources */,
 				2144DF891603AD8E00CA6E43 /* BZViewControllerSpec.m in Sources */,
 				21569AB91603F75100B3A868 /* CoverageFix.m in Sources */,
+				216F620116064F790004DEE9 /* BZGameCenterAuth.m in Sources */,
+				216F620316064F950004DEE9 /* BZAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
